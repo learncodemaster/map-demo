@@ -1,24 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
+import {Home} from "./components/home";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import Car from "./pages/Car";
+import Main from "./pages/Main";
+import NotFound from "./pages/NotFound";
+import Layout from "./components/Layout"
+import Truck from "./pages/Truck";
+import Pickup from "./pages/Pickup"
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+            <Route render={(props)=>(
+                <Layout {...props}>
+                    <Switch>
+                        <Route path="/" exact component={Main}/>
+                        <Route path="/main" exact component={Main}/>
+                        <Route path="/car" component={Car}/>
+                         <Route path="/truck" component={Truck}/>
+                        <Route path="/pickup" component={Pickup}/> 
+                        <Route component={NotFound}/>
+                    </Switch>
+                </Layout>
+            )}/>
+        </BrowserRouter>
   );
 }
 
